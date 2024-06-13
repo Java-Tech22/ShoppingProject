@@ -1,0 +1,17 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.model.Product;
+
+public interface ProductService {
+	
+	public List<Product> getProducts();
+	
+	public Product saveProduct(Product product) ;
+	
+	public void deleteProductById(int id) ;
+
+	public Product findProductById(int id);
+
+}

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ProductRepository;
+import com.example.demo.exceptions.ProductNotFoundException;
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
 
@@ -22,7 +23,9 @@ public class ProductServiceImpl  implements ProductService{
 		Iterable<Product> products =repository.findAll();
 		List<Product> list = new ArrayList<>();
 		products.forEach(list::add);
-		System.out.println(products.toString());
+		if(list.isEmpty()) {
+			throw new ProductNotFoundException("No Products Available!!");
+		}
 		return list;
 	}
 
@@ -42,8 +45,9 @@ public class ProductServiceImpl  implements ProductService{
 	}
 
 	@Override
-	public void deleteProductById(int id) {
+	public String deleteProductById(int id) {
 		repository.deleteById(id);
+		return "Product Deleted Successfully";
 		
 	}
 

@@ -14,7 +14,7 @@ public interface CustomerService {
 	
 	public Customer saveCustomer(Customer customer) ;
 	
-	public void deleteCustomerById(int id) ;
+	public String deleteCustomerById(int id) ;
 
 	public List<Customer> findAllCustomer();
 	

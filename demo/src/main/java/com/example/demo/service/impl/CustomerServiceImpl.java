@@ -3,12 +3,14 @@ package com.example.demo.service.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CustomerRepository;
 import com.example.demo.dao.impl.CustomerRepositoryImpl;
+import com.example.demo.exceptions.CustomerNotFoundException;
 import com.example.demo.model.Customer;
 import com.example.demo.model.Product;
 import com.example.demo.service.CustomerService;
@@ -21,8 +23,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer findCustomerById(int id) {
-		return repository.findById(id);
-		
+		Optional<Customer> cust= repository.findById(id);
+		if(cust.isPresent()) {
+			return cust.get();
+		}else {
+			throw new CustomerNotFoundException("Customer is not avaiable with the given ID : "+ id);
+		}
 	}
 
 	/*
@@ -32,7 +38,12 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public List<Customer> findCustomerByLastName(String lastName) {
-		return repository.findByLastName(lastName);
+		List<Customer> list= repository.findByLastName(lastName);
+		if(!list.isEmpty()) {
+			return list;
+		}else {
+			throw new CustomerNotFoundException("Customer is not avaiable with the given Last Name : "+ lastName);
+		}
 		
 	}
 
@@ -40,13 +51,24 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
-  
-		return repository.save(customer);
+		if(customer.getFirstName().isBlank() || customer.getFirstName().isEmpty() || customer.getFirstName()==null) {
+			throw new CustomerNotFoundException("Customer can not be saved in to the system");
+		}else {
+			return repository.save(customer);
+		}
+		
 	}
 
 	@Override
-	public void deleteCustomerById(int id) {
-		repository.deleteById(id);
+	public String deleteCustomerById(int id) {
+		
+		Customer customer = (Customer) findCustomerById(id);
+        if(customer!=null){
+            repository.deleteById(id);
+            return  "Customer Deleted Successfully";
+        }else{
+            throw new CustomerNotFoundException("Customer Id : " + id +  " does not exit ");
+        }
 		
 	}
 

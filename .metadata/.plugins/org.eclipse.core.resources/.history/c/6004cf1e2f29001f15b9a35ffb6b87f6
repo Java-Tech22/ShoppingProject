@@ -1,0 +1,23 @@
+package com.example.demo.advices;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.example.demo.exceptions.CustomerNotFoundException;
+
+public class CustomerExceptionalHandler {
+	
+	 @ResponseStatus(HttpStatus.NOT_FOUND)
+	    @ExceptionHandler(value = {CustomerNotFoundException.class})
+	    public ResponseEntity<Object> handleCarnotFoundException(CustomerNotFoundException customerNotFoundException){
+
+	        Map<String, String> errorMap= new HashMap<>();
+
+	        errorMap.put("message", carNotFoundException.getMessage());
+	        errorMap.put("timestamp", new Date().toString());
+	        errorMap.put("httpStatus", HttpStatus.NOT_FOUND.toString());
+
+	        return new ResponseEntity<>(errorMap, HttpStatus.NOT_FOUND);
+
+}

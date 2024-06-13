@@ -12,7 +12,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
 	 public List<Customer> findByLastName(String lastName);
 
-	  public Customer findById(int id);
+	  //public Customer findById(int id);
 
 	  //public List<Customer> findByFirstName(String firstName);
 	  
