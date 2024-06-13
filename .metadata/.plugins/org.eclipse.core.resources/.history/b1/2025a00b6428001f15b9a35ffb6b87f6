@@ -1,0 +1,67 @@
+package com.example.demo.service.impl;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.CustomerRepository;
+import com.example.demo.dao.impl.CustomerRepositoryImpl;
+import com.example.demo.model.Customer;
+import com.example.demo.model.Product;
+import com.example.demo.service.CustomerService;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	CustomerRepositoryImpl repository;
+
+	@Override
+	public Customer findCustomerById(int id) {
+		return repository.findById(id);
+		
+	}
+
+	@Override
+	public List<Customer> findCustomerByLastName(String lastName) {
+		return repository.findByLastName(lastName);
+	}
+
+	@Override
+	public List<Customer> findCustomerByFirsttName(String firstName) {
+		return repository.findByLastName(firstName);
+	}
+
+	@Override
+	public Customer saveCustomer(Customer customer) {
+		
+		/*
+		 * Product product1=new Product(1, "TV", "Smart TV"); Product product2=new
+		 * Product(2, "Refrigerator", "Cool"); Product product3=new Product(3, "Laptop",
+		 * "DEll Laptop");
+		 * 
+		 * List<Product> list= new ArrayList<>(); list.add(product1);
+		 * list.add(product2); list.add(product3);
+		 */
+       
+		return repository.save(customer);
+	}
+
+	@Override
+	public void deleteCustomerById(int id) {
+		repository.deleteById(id);
+		
+	}
+
+	public List<Customer> findAllCustomer() {
+		Iterable<Customer> customers =repository.findAll();
+		List<Customer> list = new ArrayList<>();
+		customers.forEach(list::add);
+		return list;
+		
+	}
+
+}

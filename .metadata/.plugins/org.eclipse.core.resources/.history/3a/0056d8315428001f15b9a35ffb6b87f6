@@ -1,0 +1,20 @@
+package com.example.demo.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.dao.CustomerRepository;
+import com.example.demo.model.Customer;
+
+
+@Repository
+public class CustomerDaoImpl implements CustomerRepository{
+
+	@Override
+	public List<Customer> findAllCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,16 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import com.example.model.Customer;
+import com.example.service.customerService;
+
+public class CustomerServiceImpl implements customerService {
+
+	@Override
+	public List<Customer> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

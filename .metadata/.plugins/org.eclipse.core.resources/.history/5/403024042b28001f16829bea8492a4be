@@ -1,0 +1,21 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.dao.impl.ProductDaoImpl;
+import com.example.model.Product;
+import com.example.service.productService;
+
+public class ProductServiceImpl  implements productService{
+
+	@Autowired
+	ProductDaoImpl productDao;
+	
+	@Override
+	public List<Product> getProducts() {
+		return productDao.findAll();
+	}
+
+}

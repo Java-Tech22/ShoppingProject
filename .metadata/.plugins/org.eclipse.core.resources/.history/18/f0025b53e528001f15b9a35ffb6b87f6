@@ -1,0 +1,68 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.Customer;
+import com.example.demo.model.Product;
+import com.example.demo.service.CustomerService;
+import com.example.demo.service.ProductService;
+import com.example.demo.service.impl.CustomerServiceImpl;
+import com.example.demo.service.impl.ProductServiceImpl;
+
+@RestController
+public class ShoppingController {
+	
+	@Autowired
+	ProductService productService;
+	
+	@Autowired
+	CustomerService customerService;
+
+	@GetMapping("/product")
+	public List<Product> getProduct() {
+		return productService.getProducts();
+		
+	}
+	
+	@GetMapping("/customer")
+	public List<Customer> getCustomer() {
+		return customerService.findAllCustomer();
+		
+	}
+	
+	@PostMapping("/customer")
+	public Customer saveCustomer(@RequestBody Customer customer) {
+		return customerService.saveCustomer(customer);
+		
+	}
+	
+
+	@PostMapping("/product")
+	public Product saveProduct(@RequestBody Product product) {
+		return productService.saveProduct(product);
+		
+	}
+	
+	
+	@GetMapping("/product/{id}")
+	public List<Product> getProductById(@PathVariable int id) {
+		return productService.findProductById(id);
+		
+	}
+	
+	@GetMapping("/product/{id}")
+	public List<Customer> getProduct(@PathVariable int id) {
+		return customerService.findAllCustomer();
+		
+	}
+	
+	
+	
+}

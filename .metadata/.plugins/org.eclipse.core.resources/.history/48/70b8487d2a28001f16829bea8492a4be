@@ -1,0 +1,19 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import com.example.dao.impl.ProductDaoImpl;
+import com.example.model.Product;
+import com.example.service.productService;
+
+public class ProductServiceImpl  implements productService{
+
+	
+	ProductDaoImpl productDao;
+	
+	@Override
+	public List<Product> getProducts() {
+		return productDao.findAll();
+	}
+
+}

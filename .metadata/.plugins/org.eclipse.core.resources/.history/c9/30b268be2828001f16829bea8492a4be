@@ -1,0 +1,15 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import com.example.model.Product;
+import com.example.service.productService;
+
+public class ProductServiceImpl  implements productService{
+
+	@Override
+	public List<Product> getProducts() {
+		return null;
+	}
+
+}

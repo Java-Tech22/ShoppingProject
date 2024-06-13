@@ -1,0 +1,22 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.model.Customer;
+
+public interface CustomerService {
+	
+	Customer findCustomerById(int id);
+	
+	public List<Customer> findByLastName(String lastName) ;
+	public List<Customer> findByFirsttName(String firstName)
+	
+	public Customer save(Customer customer) ;
+	
+	public void deleteById(int id) ;
+	
+	
+	
+	
+
+}

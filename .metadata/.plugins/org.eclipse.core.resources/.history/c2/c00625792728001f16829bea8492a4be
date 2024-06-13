@@ -1,0 +1,19 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.model.Customer;
+import com.example.service.customerService;
+
+@Service
+public class CustomerServiceImpl implements customerService {
+
+	@Override
+	public List<Customer> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

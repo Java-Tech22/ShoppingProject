@@ -1,0 +1,30 @@
+package com.example.demo.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.demo.model.Product;
+
+public interface productDao  extends CrudRepository<Product,Long> {
+	
+	
+	Iterable<Product> findAll();
+	
+	//public List<Product> findAll();
+	
+	Optional<Product> findById(int id);
+	
+	void delete (Product product);
+	
+	void deleteAll();
+	
+	Product save(Product product);
+	
+	//List<Product> saveAll(Iterable <Product> products);
+	
+	
+	
+
+}
