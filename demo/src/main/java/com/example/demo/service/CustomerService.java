@@ -17,5 +17,7 @@ public interface CustomerService {
 	public String deleteCustomerById(int id) ;
 
 	public List<Customer> findAllCustomer();
+
+	public Customer updateCustomer(int id, Customer customer);
 	
 }

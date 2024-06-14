@@ -21,11 +21,10 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String productName;
-	@Column(name="pro_desc")
 	private String productDescription;
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-	@JsonIgnore
+	//@JsonIgnore
 	private Customer customer;
 	
 	
@@ -34,12 +33,16 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(int id, String productName, String productDescription) {
+	
+
+	public Product(int id, String productName, String productDescription, Customer customer) {
 		super();
 		this.id = id;
 		this.productName = productName;
 		this.productDescription = productDescription;
+		this.customer = customer;
 	}
+
 
 	public String getProductName() {
 		return productName;

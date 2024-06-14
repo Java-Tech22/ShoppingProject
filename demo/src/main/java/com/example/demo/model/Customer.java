@@ -25,6 +25,20 @@ public class Customer {
 		
 	
 	
+	
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(int id, String firstName, String lastName, List<Product> product) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.product = product;
+	}
+
 	public int getId() {
 		return id;
 	}

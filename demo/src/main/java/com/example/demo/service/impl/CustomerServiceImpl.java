@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	/*
 	 * @Override public List<Customer> findCustomerByFirstName(String firstName) {
-	 * return repository.findByLastName(firstName); }
+	 * return repository.findByFirstName(firstName); }
 	 */
 	
 	@Override
@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public String deleteCustomerById(int id) {
 		
-		Customer customer = (Customer) findCustomerById(id);
+		Customer customer = findCustomerById(id);
         if(customer!=null){
             repository.deleteById(id);
             return  "Customer Deleted Successfully";
@@ -78,6 +78,27 @@ public class CustomerServiceImpl implements CustomerService {
 		customers.forEach(list::add);
 		return list;
 		
+	}
+
+	@Override
+	public Customer updateCustomer(int id, Customer customer) {
+
+		Customer cust = (Customer) findCustomerById(id);
+       if(cust!=null) {
+         	if(customer.getFirstName() != null)
+         		cust.setFirstName(customer.getFirstName());
+         	if(customer.getLastName() != null)
+         		cust.setLastName(customer.getLastName());
+           
+            if(customer.getProduct() != null)
+            	cust.setProduct(customer.getProduct());
+
+            	repository.save(cust);
+            	return  cust;
+       }
+        else{
+            throw new CustomerNotFoundException("Customer with given id: " + id +  " is not available !!");
+        }
 	}
 
 }

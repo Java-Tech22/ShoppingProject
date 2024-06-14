@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,7 @@ public class ShoppingController {
 	CustomerService customerService;
 
 	
+	@GetMapping("/products")
 	public ResponseEntity<List<Product>> getProducts() {
 		return new ResponseEntity<>(productService.getProducts(),HttpStatus.OK);
 		
@@ -47,7 +49,7 @@ public class ShoppingController {
 
 	@PostMapping("/product")
 	public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
-		return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.OK);
+		return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
 		
 	}
 	
@@ -84,8 +86,14 @@ public class ShoppingController {
 		 return new ResponseEntity<>(customerService.deleteCustomerById(id), HttpStatus.OK);
 	}
 	
-
+	 @PutMapping("/product/{id}")
+	    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product){
+	        return new ResponseEntity<>(productService.updateProduct(id,product),HttpStatus.ACCEPTED);
+	    }
 	
-	
-	
+	 @PutMapping("/customer/{id}")
+	    public ResponseEntity<Customer> updateCustomer(@PathVariable int id, @RequestBody Customer customer){
+	        return new ResponseEntity<>(customerService.updateCustomer(id,customer),HttpStatus.ACCEPTED);
+	    }
+	 
 }
